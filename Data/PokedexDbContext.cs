@@ -1,11 +1,14 @@
 ﻿using Data.Entities;
+using Data.Seed;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using Pokemon = Data.Entities.Pokemon;
 using Type = Data.Entities.Type;
 
 namespace Data
 {
-    public class PokedexDbContext : DbContext
+    public class PokedexDbContext : DbContext, IPokedexDbContext
     {
         public PokedexDbContext()
         {
@@ -17,7 +20,6 @@ namespace Data
 
         public DbSet<Pokemon> Pokemon { get; set; }
         public DbSet<PokemonSpecies> PokemonSpecies { get; set; }
-        public DbSet<PokemonType> SpeciesType { get; set; }
         public DbSet<Type> Type { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
@@ -32,10 +34,13 @@ namespace Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Pokemon>(e =>
+            builder.Entity<Entities.Pokemon>(e =>
             {
                 e.ToTable("Pokemon");
                 e.HasKey(k => k.PokemonID);
+
+                e.Property(p => p.PokemonID)
+                .UseIdentityColumn();
 
                 e.Property(p => p.SpeciesID)
                 .IsRequired();
@@ -47,7 +52,7 @@ namespace Data
 
                 e.HasOne(o => o.Species)
                     .WithOne()
-                    .HasForeignKey<Pokemon>(k => k.SpeciesID)
+                    .HasForeignKey<Entities.Pokemon>(k => k.SpeciesID)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
@@ -61,38 +66,8 @@ namespace Data
                 .HasMaxLength(100)
                 .IsUnicode();
 
-                e.Property(p => p.SpeciesTypeID)
-                .IsRequired();
-
-                e.Property(p => p.SpeciesDescription)
-                .IsRequired()
-                .HasMaxLength(500)
-                .IsUnicode();
-
-                e.Property(p => p.EvolvesFromID)
-                .IsRequired(false);
-
-                e.Property(p => p.EvolvesToID)
-                .IsRequired(false);
-
-                e.Property(p => p.EvolutionLevel)
-                .IsRequired(false);
-
-                e.HasOne(o => o.EvolvesFrom)
-                .WithOne()
-                .HasForeignKey<PokemonSpecies>(k => k.EvolvesFromID)
-                .OnDelete(DeleteBehavior.Restrict);
-
-                e.HasOne(o => o.EvolvesTo)
-                .WithOne()
-                .HasForeignKey<PokemonSpecies>(k => k.EvolvesToID)
-                .OnDelete(DeleteBehavior.Restrict);
-            });
-
-            builder.Entity<PokemonType>(e =>
-            {
-                e.ToTable("SpeciesType");
-                e.HasKey(k => k.PokemonTypeID);
+                e.Property(p => p.SpeciesID)
+                .ValueGeneratedNever();
 
                 e.Property(p => p.PrimaryTypeID)
                 .IsRequired();
@@ -100,15 +75,23 @@ namespace Data
                 e.Property(p => p.SecondaryTypeID)
                 .IsRequired(false);
 
+                e.Property(p => p.SpeciesDescription)
+                .IsRequired()
+                .HasMaxLength(500)
+                .IsUnicode();
+
                 e.HasOne(o => o.PrimaryType)
                 .WithOne()
-                .HasForeignKey<PokemonType>(k => k.PrimaryTypeID)
+                .HasForeignKey<PokemonSpecies>(k => k.PrimaryTypeID)
                 .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(o => o.SecondaryType)
                 .WithOne()
-                .HasForeignKey<PokemonType>(k => k.SecondaryTypeID)
+                .HasForeignKey<PokemonSpecies>(k => k.SecondaryTypeID)
                 .OnDelete(DeleteBehavior.Restrict);
+
+                //seed data
+                //e.HasData(PokemonSeedParser.GetSpeciesSeedList());
             });
 
             builder.Entity<Type>(e =>
@@ -120,6 +103,9 @@ namespace Data
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode();
+
+                //seed data
+                //e.HasData(PokemonSeedParser.GetTypeSeedList());
             });
         }
     }
