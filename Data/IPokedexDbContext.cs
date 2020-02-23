@@ -8,5 +8,6 @@ namespace Data
         DbSet<Pokemon> Pokemon { get; set; }
         DbSet<PokemonSpecies> PokemonSpecies { get; set; }
         DbSet<Type> Type { get; set; }
+        int SaveChanges();
     }
 }

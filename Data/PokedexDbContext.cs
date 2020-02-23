@@ -108,5 +108,10 @@ namespace Data
                 //e.HasData(PokemonSeedParser.GetTypeSeedList());
             });
         }
+
+        public override int SaveChanges()
+        {
+            return base.SaveChanges();
+        }
     }
 }
