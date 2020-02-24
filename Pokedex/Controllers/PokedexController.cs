@@ -77,7 +77,7 @@ namespace Pokedex.Controllers
             {
                 var response = _repo.Update(updateDto);
 
-                return StatusCode((int)HttpStatusCode.OK, $"/pokemon/{response}");
+                return StatusCode((int)HttpStatusCode.OK, $"/Pokedex/pokemon/{response}");
             }
             catch (Exception ex)
             {
@@ -98,7 +98,7 @@ namespace Pokedex.Controllers
             {
                 var response = _repo.Create(createPokemon);
 
-                return StatusCode((int)HttpStatusCode.Created, $"/pokemon/{response}");
+                return StatusCode((int)HttpStatusCode.Created, $"/Pokedex/pokemon/{response}");
             }
             catch (Exception ex)
             {
