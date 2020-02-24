@@ -25,7 +25,7 @@ namespace Pokedex.Controllers
         }
 
         /// <summary>
-        /// Return a list of Pokemon
+        /// Returns a list of all pokemon  you have currently caught
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -45,7 +45,7 @@ namespace Pokedex.Controllers
         }
 
         /// <summary>
-        /// Returns a Pokemon
+        /// Returns a single pokemon that you have caught by its PokemonID
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -65,7 +65,7 @@ namespace Pokedex.Controllers
         }
 
         /// <summary>
-        /// Updates the specified Pokemon's Name or SpeciesID
+        /// Updates a caught pokemon by its PokemonID. You can update the PokemonName, SpeciesID, or both.
         /// </summary>
         /// <param name="updateDto"></param>
         /// <returns></returns>
@@ -86,7 +86,7 @@ namespace Pokedex.Controllers
         }
 
         /// <summary>
-        /// Creates a new Pokemon
+        /// Adds to your list of caught pokemon. Provide the Pokemon SpeciesID and PokemonName.
         /// </summary>
         /// <param name="createPokemon"></param>
         /// <returns></returns>
@@ -107,7 +107,7 @@ namespace Pokedex.Controllers
         }
 
         /// <summary>
-        /// Deletes a new Pokemon
+        /// Deletes a pokemon from your caught list by PokemonID.
         /// </summary>
         /// <param name="deleteDto"></param>
         /// <returns></returns>
@@ -128,7 +128,7 @@ namespace Pokedex.Controllers
         }
 
         /// <summary>
-        /// Returns a list of PokemonSpecies with SpeciesID and SpeciesName
+        /// Returns a list of all PokemonSpecies with both SpeciesID and SpeciesName.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
