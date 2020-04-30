@@ -5,7 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-
+    <Compile Remove="Migrations\20200223194731_Initial_Create.cs" />
+    <Compile Remove="Migrations\20200223194731_Initial_Create.Designer.cs" />
+    <Compile Remove="Migrations\20200429234155_updateSchema.cs" />
+    <Compile Remove="Migrations\20200429234155_updateSchema.Designer.cs" />
+    <Compile Remove="Migrations\20200429234646_updateSchema.cs" />
+    <Compile Remove="Migrations\20200429234646_updateSchema.Designer.cs" />
+    <Compile Remove="Migrations\20200429235639_updateSchema.cs" />
+    <Compile Remove="Migrations\20200429235639_updateSchema.Designer.cs" />
+    <Compile Remove="Migrations\20200429235909_seedData.cs" />
+    <Compile Remove="Migrations\20200429235909_seedData.Designer.cs" />
+    <Compile Remove="Migrations\20200430002439_updateSchema2.cs" />
+    <Compile Remove="Migrations\20200430002439_updateSchema2.Designer.cs" />
+    <Compile Remove="Migrations\20200430003231_initialSchema.cs" />
+    <Compile Remove="Migrations\20200430003231_initialSchema.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,7 +28,7 @@
 
   <ItemGroup>
     <None Update="Seed\Pokemon.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

@@ -1,5 +1,7 @@
 ﻿
 
+using System.Collections.Generic;
+
 namespace Data.Entities
 {
     public class Type

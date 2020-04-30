@@ -97,9 +97,9 @@ namespace Data.Repositories
 
         }
 
-        public void Delete(DeletePokemonDto dto)
+        public void Delete(int id)
         {
-            var pokemon = _dbContext.Pokemon.FirstOrDefault(o => o.PokemonID == dto.PokemonID);
+            var pokemon = _dbContext.Pokemon.FirstOrDefault(o => o.PokemonID == id);
 
             if (pokemon != null)
             {
@@ -108,7 +108,7 @@ namespace Data.Repositories
                 return;
             }
 
-            throw new KeyNotFoundException($"Pokemon with ID: {dto.PokemonID} does not exist.");
+            throw new KeyNotFoundException($"Pokemon with ID: {id} does not exist.");
         }
 
 

@@ -8,6 +8,7 @@ using Data.Dto;
 using Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Pokedex.Controllers
 {
@@ -77,7 +78,7 @@ namespace Pokedex.Controllers
             {
                 var response = _repo.Update(updateDto);
 
-                return StatusCode((int)HttpStatusCode.OK, $"/Pokedex/pokemon/{response}");
+                return StatusCode((int)HttpStatusCode.OK, JsonConvert.SerializeObject($"/Pokedex/pokemon/{response}"));
             }
             catch (Exception ex)
             {
@@ -98,7 +99,7 @@ namespace Pokedex.Controllers
             {
                 var response = _repo.Create(createPokemon);
 
-                return StatusCode((int)HttpStatusCode.Created, $"/Pokedex/pokemon/{response}");
+                return StatusCode((int)HttpStatusCode.Created, JsonConvert.SerializeObject($"/Pokedex/pokemon/{response}"));
             }
             catch (Exception ex)
             {
@@ -109,15 +110,15 @@ namespace Pokedex.Controllers
         /// <summary>
         /// Deletes a pokemon from your caught list by PokemonID.
         /// </summary>
-        /// <param name="deleteDto"></param>
+        /// <param name="pokemonID"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("pokemon")]
-        public IActionResult DeletePokemon([Required][FromBody] DeletePokemonDto deleteDto)
+        [Route("pokemon/{pokemonID}")]
+        public IActionResult DeletePokemon([Required][FromRoute]int pokemonID)
         {
             try
             {
-                _repo.Delete(deleteDto);
+                _repo.Delete(pokemonID);
 
                 return StatusCode((int)HttpStatusCode.OK);
             }

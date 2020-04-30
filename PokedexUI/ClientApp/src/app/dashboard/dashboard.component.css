@@ -1,0 +1,23 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.cardTitle {
+  vertical-align: super;
+  padding: 20px;
+  text-transform: uppercase;
+}
+
+mat-card {
+  border: 3px inset darkred;
+  border-radius: 5px;
+}
+
+.cardContainer {
+  height: calc(100% - 64px);
+  overflow-y: scroll;
+}
+
+mat-card {
+  margin-bottom: 15px;
+}

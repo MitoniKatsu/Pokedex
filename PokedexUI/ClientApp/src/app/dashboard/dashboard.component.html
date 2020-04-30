@@ -1,0 +1,49 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>Pokédex</span>
+    <span class="spacer"></span>
+    <button mat-icon-button class="addButton" (click)="openAddPokemonDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div *ngIf="loadingDone" class="cardContainer">
+  <div *ngIf="pokemon.length == 0; then empty else hasPokemon"></div>
+
+  <ng-template #empty>
+    <mat-card>
+      Pokemon List is Empty
+    </mat-card>
+  </ng-template>
+
+  <ng-template #hasPokemon>
+    <mat-card *ngFor="let i of pokemon">
+      <mat-card-title>
+        <img src="./assets/images/PixelBall.png" mat-card-avatar>
+        <span class="cardTitle">{{i.pokemonName}}</span>
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        Species: {{i.pokemonSpecies.speciesName}}
+      </mat-card-subtitle>
+
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>Primary Type: {{i.pokemonSpecies.primaryType.typeName}}</mat-list-item>
+          <mat-list-item *ngIf="i.pokemonSpecies.secondaryType !== null">Secondary Type: {{i.pokemonSpecies.secondaryType.typeName}}</mat-list-item>
+          <mat-list-item>Description: {{i.pokemonSpecies.description}}</mat-list-item>
+        </mat-list>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-icon-button (click)="openUpdatePokemonDialog(i)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deletePokemon(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </ng-template>
+</div>

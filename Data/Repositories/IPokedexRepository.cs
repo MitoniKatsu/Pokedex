@@ -6,7 +6,7 @@ namespace Data.Repositories
     public interface IPokedexRepository
     {
         int Create(CreatePokemonDto dto);
-        void Delete(DeletePokemonDto dto);
+        void Delete(int id);
         PokemonDto Get(int id);
         IList<PokemonDto> GetList();
         IList<SimpleSpeciesDto> GetSpeciesList();

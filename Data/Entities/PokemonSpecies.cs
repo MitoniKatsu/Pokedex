@@ -13,7 +13,10 @@ namespace Data.Entities
         public string SpeciesDescription { get; set; }
         public int PrimaryTypeID { get; set; }
         public int? SecondaryTypeID { get; set; }
+
+        //Navigation Properties
         public Type PrimaryType { get; set; }
         public Type SecondaryType { get; set; }
+        public ICollection<Pokemon> Pokemon {get;set;}
     }
 }

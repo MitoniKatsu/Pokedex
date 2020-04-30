@@ -11,6 +11,8 @@ namespace Data.Entities
         public int PokemonID { get; set; }
         public int SpeciesID { get; set; }
         public string PokemonName { get; set; }
+
+        //Navigation Properties
         public PokemonSpecies Species { get; set; }
     }
 }

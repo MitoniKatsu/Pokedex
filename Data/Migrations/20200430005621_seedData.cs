@@ -2,69 +2,17 @@
 
 namespace Data.Migrations
 {
-    public partial class Initial_Create : Migration
+    public partial class seedData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Type",
-                columns: table => new
-                {
-                    TypeID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TypeName = table.Column<string>(maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Type", x => x.TypeID);
-                });
+            migrationBuilder.DropForeignKey(
+                name: "FK_PokemonSpecies_Type_PrimaryTypeID",
+                table: "PokemonSpecies");
 
-            migrationBuilder.CreateTable(
-                name: "PokemonSpecies",
-                columns: table => new
-                {
-                    SpeciesID = table.Column<int>(nullable: false),
-                    SpeciesName = table.Column<string>(maxLength: 100, nullable: false),
-                    SpeciesDescription = table.Column<string>(maxLength: 500, nullable: false),
-                    PrimaryTypeID = table.Column<int>(nullable: false),
-                    SecondaryTypeID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PokemonSpecies", x => x.SpeciesID);
-                    table.ForeignKey(
-                        name: "FK_PokemonSpecies_Type_PrimaryTypeID",
-                        column: x => x.PrimaryTypeID,
-                        principalTable: "Type",
-                        principalColumn: "TypeID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PokemonSpecies_Type_SecondaryTypeID",
-                        column: x => x.SecondaryTypeID,
-                        principalTable: "Type",
-                        principalColumn: "TypeID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Pokemon",
-                columns: table => new
-                {
-                    PokemonID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SpeciesID = table.Column<int>(nullable: false),
-                    PokemonName = table.Column<string>(maxLength: 100, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Pokemon", x => x.PokemonID);
-                    table.ForeignKey(
-                        name: "FK_Pokemon_PokemonSpecies_SpeciesID",
-                        column: x => x.SpeciesID,
-                        principalTable: "PokemonSpecies",
-                        principalColumn: "SpeciesID",
-                        onDelete: ReferentialAction.Restrict);
-                });
+            migrationBuilder.DropForeignKey(
+                name: "FK_PokemonSpecies_Type_SecondaryTypeID",
+                table: "PokemonSpecies");
 
             migrationBuilder.InsertData(
                 table: "Type",
@@ -823,36 +771,3726 @@ namespace Data.Migrations
                     { 716, 18, null, "Legends say it can share eternal life. It slept for a thousand years in the form of a tree before its revival.", "Xerneas" }
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Pokemon_SpeciesID",
-                table: "Pokemon",
-                column: "SpeciesID",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PokemonSpecies_PrimaryTypeID",
+            migrationBuilder.AddForeignKey(
+                name: "FK_PokemonSpecies_Type_PrimaryTypeID",
                 table: "PokemonSpecies",
                 column: "PrimaryTypeID",
-                unique: false);
+                principalTable: "Type",
+                principalColumn: "TypeID");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_PokemonSpecies_SecondaryTypeID",
+            migrationBuilder.AddForeignKey(
+                name: "FK_PokemonSpecies_Type_SecondaryTypeID",
                 table: "PokemonSpecies",
                 column: "SecondaryTypeID",
-                unique: false,
-                filter: "[SecondaryTypeID] IS NOT NULL");
+                principalTable: "Type",
+                principalColumn: "TypeID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Pokemon");
+            migrationBuilder.DropForeignKey(
+                name: "FK_PokemonSpecies_Type_PrimaryTypeID",
+                table: "PokemonSpecies");
 
-            migrationBuilder.DropTable(
-                name: "PokemonSpecies");
+            migrationBuilder.DropForeignKey(
+                name: "FK_PokemonSpecies_Type_SecondaryTypeID",
+                table: "PokemonSpecies");
 
-            migrationBuilder.DropTable(
-                name: "Type");
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 4);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 5);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 6);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 7);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 8);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 9);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 10);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 11);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 12);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 13);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 14);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 15);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 16);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 17);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 18);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 19);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 20);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 21);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 22);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 23);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 24);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 25);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 26);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 27);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 28);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 29);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 30);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 31);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 32);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 33);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 34);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 35);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 36);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 37);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 38);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 39);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 40);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 41);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 42);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 43);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 44);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 45);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 46);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 47);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 48);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 49);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 50);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 51);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 52);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 53);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 54);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 55);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 56);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 57);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 58);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 59);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 60);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 61);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 62);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 63);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 64);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 65);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 66);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 67);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 68);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 69);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 70);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 71);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 72);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 73);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 74);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 75);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 76);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 77);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 78);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 79);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 80);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 81);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 82);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 83);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 84);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 85);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 86);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 87);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 88);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 89);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 90);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 91);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 92);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 93);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 94);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 95);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 96);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 97);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 98);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 99);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 100);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 101);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 102);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 103);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 104);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 105);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 106);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 107);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 108);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 109);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 110);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 111);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 112);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 113);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 114);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 115);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 116);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 117);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 118);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 119);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 120);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 121);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 122);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 123);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 124);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 125);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 126);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 127);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 128);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 129);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 130);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 131);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 132);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 133);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 134);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 135);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 136);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 137);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 138);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 139);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 140);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 141);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 142);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 143);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 144);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 145);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 146);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 147);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 148);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 149);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 150);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 151);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 152);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 153);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 154);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 155);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 156);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 157);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 158);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 159);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 160);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 161);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 162);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 163);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 164);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 165);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 166);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 167);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 168);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 169);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 170);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 171);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 172);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 173);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 174);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 175);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 176);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 177);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 178);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 179);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 180);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 181);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 182);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 183);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 184);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 185);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 186);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 187);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 188);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 189);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 190);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 191);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 192);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 193);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 194);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 195);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 196);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 197);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 198);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 199);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 200);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 201);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 202);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 203);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 204);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 205);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 206);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 207);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 208);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 209);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 210);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 211);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 212);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 213);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 214);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 215);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 216);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 217);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 218);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 219);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 220);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 221);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 222);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 223);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 224);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 225);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 226);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 227);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 228);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 229);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 230);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 231);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 232);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 233);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 234);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 235);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 236);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 237);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 238);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 239);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 240);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 241);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 242);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 243);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 244);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 245);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 246);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 247);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 248);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 249);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 250);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 251);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 252);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 253);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 254);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 255);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 256);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 257);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 258);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 259);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 260);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 261);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 262);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 263);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 264);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 265);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 266);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 267);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 268);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 269);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 270);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 271);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 272);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 273);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 274);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 275);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 276);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 277);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 278);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 279);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 280);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 281);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 282);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 283);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 284);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 285);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 286);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 287);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 288);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 289);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 290);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 291);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 292);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 293);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 294);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 295);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 296);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 297);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 298);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 299);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 300);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 301);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 302);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 303);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 304);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 305);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 306);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 307);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 308);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 309);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 310);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 311);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 312);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 313);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 314);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 315);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 316);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 317);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 318);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 319);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 320);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 321);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 322);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 323);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 324);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 325);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 326);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 327);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 328);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 329);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 330);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 331);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 332);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 333);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 334);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 335);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 336);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 337);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 338);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 339);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 340);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 341);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 342);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 343);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 344);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 345);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 346);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 347);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 348);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 349);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 350);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 351);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 352);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 353);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 354);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 355);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 356);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 357);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 358);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 359);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 360);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 361);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 362);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 363);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 364);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 365);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 366);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 367);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 368);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 369);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 370);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 371);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 372);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 373);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 374);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 375);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 376);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 377);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 378);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 379);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 380);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 381);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 382);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 383);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 384);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 385);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 386);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 387);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 388);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 389);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 390);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 391);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 392);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 393);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 394);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 395);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 396);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 397);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 398);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 399);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 400);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 401);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 402);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 403);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 404);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 405);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 406);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 407);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 408);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 409);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 410);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 411);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 412);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 413);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 414);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 415);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 416);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 417);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 418);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 419);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 420);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 421);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 422);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 423);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 424);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 425);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 426);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 427);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 428);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 429);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 430);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 431);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 432);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 433);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 434);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 435);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 436);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 437);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 438);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 439);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 440);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 441);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 442);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 443);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 444);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 445);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 446);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 447);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 448);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 449);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 450);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 451);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 452);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 453);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 454);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 455);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 456);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 457);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 458);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 459);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 460);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 461);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 462);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 463);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 464);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 465);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 466);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 467);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 468);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 469);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 470);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 471);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 472);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 473);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 474);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 475);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 476);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 477);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 478);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 479);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 480);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 481);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 482);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 483);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 484);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 485);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 486);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 487);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 488);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 489);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 490);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 491);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 492);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 493);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 494);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 495);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 496);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 497);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 498);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 499);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 500);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 501);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 502);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 503);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 504);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 505);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 506);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 507);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 508);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 509);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 510);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 511);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 512);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 513);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 514);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 515);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 516);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 517);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 518);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 519);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 520);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 521);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 522);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 523);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 524);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 525);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 526);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 527);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 528);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 529);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 530);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 531);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 532);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 533);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 534);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 535);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 536);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 537);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 538);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 539);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 540);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 541);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 542);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 543);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 544);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 545);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 546);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 547);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 548);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 549);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 550);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 551);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 552);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 553);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 554);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 555);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 556);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 557);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 558);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 559);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 560);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 561);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 562);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 563);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 564);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 565);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 566);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 567);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 568);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 569);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 570);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 571);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 572);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 573);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 574);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 575);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 576);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 577);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 578);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 579);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 580);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 581);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 582);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 583);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 584);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 585);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 586);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 587);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 588);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 589);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 590);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 591);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 592);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 593);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 594);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 595);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 596);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 597);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 598);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 599);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 600);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 601);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 602);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 603);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 604);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 605);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 606);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 607);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 608);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 609);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 610);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 611);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 612);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 613);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 614);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 615);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 616);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 617);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 618);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 619);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 620);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 621);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 622);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 623);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 624);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 625);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 626);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 627);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 628);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 629);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 630);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 631);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 632);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 633);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 634);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 635);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 636);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 637);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 638);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 639);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 640);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 641);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 642);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 643);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 644);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 645);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 646);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 647);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 648);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 649);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 650);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 651);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 652);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 653);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 654);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 655);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 656);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 657);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 658);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 659);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 660);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 661);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 662);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 663);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 664);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 665);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 666);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 667);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 668);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 669);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 670);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 671);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 672);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 673);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 674);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 675);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 676);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 677);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 678);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 679);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 680);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 681);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 682);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 683);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 684);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 685);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 686);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 687);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 688);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 689);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 690);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 691);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 692);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 693);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 694);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 695);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 696);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 697);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 698);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 699);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 700);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 701);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 702);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 703);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 704);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 705);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 706);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 707);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 708);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 709);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 710);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 711);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 712);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 713);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 714);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 715);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 716);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 717);
+
+            migrationBuilder.DeleteData(
+                table: "PokemonSpecies",
+                keyColumn: "SpeciesID",
+                keyValue: 718);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 4);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 5);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 6);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 7);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 8);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 9);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 10);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 11);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 12);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 13);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 14);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 15);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 16);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 17);
+
+            migrationBuilder.DeleteData(
+                table: "Type",
+                keyColumn: "TypeID",
+                keyValue: 18);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_PokemonSpecies_Type_PrimaryTypeID",
+                table: "PokemonSpecies",
+                column: "PrimaryTypeID",
+                principalTable: "Type",
+                principalColumn: "TypeID",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_PokemonSpecies_Type_SecondaryTypeID",
+                table: "PokemonSpecies",
+                column: "SecondaryTypeID",
+                principalTable: "Type",
+                principalColumn: "TypeID",
+                onDelete: ReferentialAction.Restrict);
         }
     }
 }

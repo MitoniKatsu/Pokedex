@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(PokedexDbContext))]
-    [Migration("20200223194731_Initial_Create")]
-    partial class Initial_Create
+    [Migration("20200430005621_seedData")]
+    partial class seedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,8 +41,7 @@ namespace Data.Migrations
 
                     b.HasKey("PokemonID");
 
-                    b.HasIndex("SpeciesID")
-                        .IsUnique();
+                    b.HasIndex("SpeciesID");
 
                     b.ToTable("Pokemon");
                 });
@@ -72,12 +71,9 @@ namespace Data.Migrations
 
                     b.HasKey("SpeciesID");
 
-                    b.HasIndex("PrimaryTypeID")
-                        .IsUnique();
+                    b.HasIndex("PrimaryTypeID");
 
-                    b.HasIndex("SecondaryTypeID")
-                        .IsUnique()
-                        .HasFilter("[SecondaryTypeID] IS NOT NULL");
+                    b.HasIndex("SecondaryTypeID");
 
                     b.ToTable("PokemonSpecies");
 
@@ -5570,8 +5566,8 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Entities.Pokemon", b =>
                 {
                     b.HasOne("Data.Entities.PokemonSpecies", "Species")
-                        .WithOne()
-                        .HasForeignKey("Data.Entities.Pokemon", "SpeciesID")
+                        .WithMany("Pokemon")
+                        .HasForeignKey("SpeciesID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
@@ -5579,15 +5575,15 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Entities.PokemonSpecies", b =>
                 {
                     b.HasOne("Data.Entities.Type", "PrimaryType")
-                        .WithOne()
-                        .HasForeignKey("Data.Entities.PokemonSpecies", "PrimaryTypeID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithMany()
+                        .HasForeignKey("PrimaryTypeID")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Data.Entities.Type", "SecondaryType")
-                        .WithOne()
-                        .HasForeignKey("Data.Entities.PokemonSpecies", "SecondaryTypeID")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithMany()
+                        .HasForeignKey("SecondaryTypeID")
+                        .OnDelete(DeleteBehavior.NoAction);
                 });
 #pragma warning restore 612, 618
         }

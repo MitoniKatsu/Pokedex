@@ -31,10 +31,20 @@ namespace Pokedex
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Environment.GetEnvironmentVariable("Connection_String");
             services.AddDbContext<IPokedexDbContext, PokedexDbContext>(o =>
-                o.UseSqlServer(Environment.GetEnvironmentVariable("Connection_String"))
+                o.UseSqlServer(connectionString)
             );
             services.AddScoped<IPokedexRepository, PokedexRepository>();
+
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+
+            }));
 
             services.AddControllers();
 
@@ -62,6 +72,8 @@ namespace Pokedex
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("CorsPolicy");
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

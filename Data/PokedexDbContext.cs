@@ -1,6 +1,7 @@
 ﻿using Data.Entities;
 using Data.Seed;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using Pokemon = Data.Entities.Pokemon;
@@ -24,11 +25,13 @@ namespace Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            var connectionString = Environment.GetEnvironmentVariable("Connection_String");
-            if (!string.IsNullOrEmpty(connectionString))
+            if (!builder.IsConfigured)
             {
-                builder.UseSqlServer(connectionString);
-                return;
+                var connectionString = Environment.GetEnvironmentVariable("Connection_String");
+                if (!string.IsNullOrEmpty(connectionString))
+                {
+                    builder.UseSqlServer(connectionString);
+                }
             }
         }
 
@@ -51,9 +54,9 @@ namespace Data
                 .IsUnicode();
 
                 e.HasOne(o => o.Species)
-                    .WithOne()
-                    .HasForeignKey<Entities.Pokemon>(k => k.SpeciesID)
-                    .OnDelete(DeleteBehavior.Restrict);
+                .WithMany(o => o.Pokemon)
+                .HasForeignKey(k => k.SpeciesID)
+                .OnDelete(DeleteBehavior.Restrict);
             });
 
             builder.Entity<PokemonSpecies>(e =>
@@ -81,14 +84,16 @@ namespace Data
                 .IsUnicode();
 
                 e.HasOne(o => o.PrimaryType)
-                .WithOne()
-                .HasForeignKey<PokemonSpecies>(k => k.PrimaryTypeID)
-                .OnDelete(DeleteBehavior.Restrict);
+                .WithMany()
+                .HasForeignKey(k => k.PrimaryTypeID)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
 
                 e.HasOne(o => o.SecondaryType)
-                .WithOne()
-                .HasForeignKey<PokemonSpecies>(k => k.SecondaryTypeID)
-                .OnDelete(DeleteBehavior.Restrict);
+                .WithMany()
+                .HasForeignKey(k => k.SecondaryTypeID)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.NoAction);
 
                 //seed data
                 //e.HasData(PokemonSeedParser.GetSpeciesSeedList());
